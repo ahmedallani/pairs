@@ -68,10 +68,12 @@ function display(arr){
   var lst=rand(arr.length);
   for(var i=0;i<lst.length;i++){
     var p=i+1
-    console.log("**pairs "+ p + "**")
-    each(lst[i],function(elm,index){
-      var k=index+1
-      console.log(k + "- " +arr[elm[0]]+ " && " + arr[elm[1]])
+    group=document.getElementById("group" + p)
+    each(lst[i],function(elm){
+      var pair = document.createElement("div");
+      var txt = document.createTextNode(arr[elm[0]]+ " :handshake: " + arr[elm[1]]);     // Create a text node
+      pair.appendChild(txt); 
+      group.appendChild(pair);
     })
   }
 }
