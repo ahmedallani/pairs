@@ -1,4 +1,4 @@
-var times = 4;
+var times = 3;
 var names = [
   "Mohamed Aziz Jelazi",
   "Ahmed Gharbi",
