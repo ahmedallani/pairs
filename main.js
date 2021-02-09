@@ -64,27 +64,53 @@ function rand(n, times) {
   }
   return rtn;
 }
-
+function groupDom(p, arr, data, groups) {
+  var group = document.createElement("div");
+  group.setAttribute("id", "group" + p);
+  var h1 = document.createElement("h1");
+  var h1txt = document.createTextNode("Group" + p);
+  h1.appendChild(h1txt);
+  group.appendChild(h1);
+  each(data, function(elm) {
+    var pair = document.createElement("div");
+    var txt = document.createTextNode(
+      arr[elm[0]] + " :handshake: " + arr[elm[1]]
+    ); // Create a text node
+    pair.appendChild(txt);
+    group.appendChild(pair);
+  });
+  groups.appendChild(group);
+}
+function tableDom(p, arr, data, groups) {
+  let rtn = [];
+  let i = 0;
+  while (i < data.length) {
+    let elm = data[i];
+    rtn[elm[0]] = arr[elm[1]];
+    rtn[elm[1]] = arr[elm[0]];
+    i += 1;
+  }
+  console.log(p, arr, rtn);
+  var table = document.createElement("div");
+  var h2 = document.createElement("h2");
+  var h2txt = document.createTextNode("Table" + p);
+  h2.appendChild(h2txt);
+  table.appendChild(h2);
+  each(rtn, function(elm) {
+    var name = document.createElement("div");
+    var txt = document.createTextNode(elm); // Create a text node
+    name.appendChild(txt);
+    table.appendChild(name);
+  });
+  groups.appendChild(table);
+}
 function display(arr, times) {
   var lst = rand(arr.length, times);
   groups = document.getElementById("groups");
   for (var i = 0; i < lst.length; i++) {
-    var p = i + 1;
-    var group = document.createElement("div");
-    group.setAttribute("id", "group" + p);
-    var h1 = document.createElement("h1");
-    var h1txt = document.createTextNode("Group" + p);
-    h1.appendChild(h1txt);
-    group.appendChild(h1);
-    each(lst[i], function(elm) {
-      var pair = document.createElement("div");
-      var txt = document.createTextNode(
-        arr[elm[0]] + " :handshake: " + arr[elm[1]]
-      ); // Create a text node
-      pair.appendChild(txt);
-      group.appendChild(pair);
-    });
-    groups.appendChild(group);
+    let elm = lst[i];
+    groupDom(i + 1, arr, elm, groups);
+    tableDom(i + 1, arr, elm, groups);
   }
 }
 display(names, times);
