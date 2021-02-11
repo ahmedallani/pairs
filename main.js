@@ -73,9 +73,16 @@ function groupDom(p, arr, data, groups) {
   group.appendChild(h1);
   each(data, function(elm) {
     var pair = document.createElement("div");
-    var txt = document.createTextNode(
-      arr[elm[0]] + " :handshake: " + arr[elm[1]]
-    ); // Create a text node
+    var txt;
+    if (arr[elm[0]] === ":muscle:") {
+      txt = document.createTextNode(arr[elm[1]] + " :muscle:"); // Create a text node
+    } else if (arr[elm[1]] === ":muscle:") {
+      arr[elm[0]] + " :muscle:";
+    } else {
+      txt = document.createTextNode(
+        arr[elm[0]] + " :handshake: " + arr[elm[1]]
+      ); // Create a text node
+    }
     pair.appendChild(txt);
     group.appendChild(pair);
   });
@@ -97,14 +104,24 @@ function tableDom(p, arr, data, groups) {
   h2.appendChild(h2txt);
   table.appendChild(h2);
   each(rtn, function(elm) {
-    var name = document.createElement("div");
-    var txt = document.createTextNode(elm); // Create a text node
-    name.appendChild(txt);
-    table.appendChild(name);
+    if (elm !== ":muscle:") {
+      var name = document.createElement("div");
+      var txt = document.createTextNode(elm); // Create a text node
+      name.appendChild(txt);
+      table.appendChild(name);
+    } else {
+      var name = document.createElement("div");
+      var txt = document.createTextNode("SOLO"); // Create a text node
+      name.appendChild(txt);
+      table.appendChild(name);
+    }
   });
   groups.appendChild(table);
 }
 function display(arr, times) {
+  if (arr.length % 2 === 1) {
+    arr.push(":muscle:");
+  }
   var lst = rand(arr.length, times);
   groups = document.getElementById("groups");
   for (var i = 0; i < lst.length; i++) {

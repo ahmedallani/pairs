@@ -35,5 +35,4 @@ var names = [
   "Wael Hajji",
   "youssef  Talhewi",
   "YousseF  Mhamdi",
-  "Riadh Saad",
 ];
