@@ -77,7 +77,7 @@ function groupDom(p, arr, data, groups) {
     if (arr[elm[0]] === ":muscle:") {
       txt = document.createTextNode(arr[elm[1]] + " :muscle:"); // Create a text node
     } else if (arr[elm[1]] === ":muscle:") {
-      arr[elm[0]] + " :muscle:";
+      txt = document.createTextNode(arr[elm[0]] + " :muscle:"); // Create a text node
     } else {
       txt = document.createTextNode(
         arr[elm[0]] + " :handshake: " + arr[elm[1]]
@@ -97,7 +97,7 @@ function tableDom(p, arr, data, groups) {
     rtn[elm[1]] = arr[elm[0]];
     i += 1;
   }
-  console.log(p, arr, rtn);
+  rtn.splice(-1, 1); // remove the pair of the solo
   var table = document.createElement("div");
   var h2 = document.createElement("h2");
   var h2txt = document.createTextNode("Table" + p);
