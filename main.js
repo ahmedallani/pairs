@@ -11,7 +11,7 @@ function each(coll, func) {
 }
 function filter(array, predicate) {
   var acc = [];
-  each(array, function(elm, key) {
+  each(array, function (elm, key) {
     if (predicate(elm, key)) {
       acc.push(elm);
     }
@@ -49,12 +49,12 @@ function rand(n, times) {
       i = getRandomInt(0, arr.length); //choose random index from arr
       vi = arr[i]; //get elm of that index
       arr.splice(i, 1); //delete elm from the arr
-      var flt = filter(arr, function(elm) {
+      var flt = filter(arr, function (elm) {
         return !obj[vi].includes(elm);
       }); //filter the elements that not associete with the first elm before
       f = getRandomInt(0, flt.length);
       vf = flt[f]; // get new associete for the first elm
-      arr = filter(arr, function(elm) {
+      arr = filter(arr, function (elm) {
         return elm !== vf;
       }); //delete the second elm from the array
       rtn[d].push([vi, vf]); //push two elm to array
@@ -71,7 +71,7 @@ function groupDom(p, arr, data, groups) {
   var h1txt = document.createTextNode("Group" + p);
   h1.appendChild(h1txt);
   group.appendChild(h1);
-  each(data, function(elm) {
+  each(data, function (elm) {
     var pair = document.createElement("div");
     var txt;
     if (arr[elm[0]] === ":muscle:") {
@@ -97,13 +97,16 @@ function tableDom(p, arr, data, groups) {
     rtn[elm[1]] = arr[elm[0]];
     i += 1;
   }
-  rtn.splice(-1, 1); // remove the pair of the solo
+  let last = arr[arr.length - 1]
+  if (last === ":muscle:") {
+    rtn.splice(-1, 1);
+  }
   var table = document.createElement("div");
   var h2 = document.createElement("h2");
   var h2txt = document.createTextNode("Table" + p);
   h2.appendChild(h2txt);
   table.appendChild(h2);
-  each(rtn, function(elm) {
+  each(rtn, function (elm) {
     if (elm !== ":muscle:") {
       var name = document.createElement("div");
       var txt = document.createTextNode(elm); // Create a text node

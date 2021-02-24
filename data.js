@@ -33,5 +33,5 @@ var names = [
   "Sabrine Douihech",
   "Wael Hajji",
   "Youssef Talhewi",
-  "Youssef Mhamdi",
+  "Youssef Mhamdi"
 ];
