@@ -13,7 +13,6 @@ var names = [
   "Hedi Riba",
   "Hiba Bouslimi",
   "Karim Zargouni",
-  "Kemla Msalem",
   "Lokmen Abid",
   "Malek Hbib Hizaoui",
   "Marwen Trabelsi",
